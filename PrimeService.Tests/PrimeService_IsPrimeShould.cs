@@ -30,5 +30,11 @@ namespace Prime.UnitTests.Services
 
 			Assert.False(result, $"{value} should not be prime");
 		}
+
+		[Fact(Skip = "Takes too long")]
+		public void TestSomething()
+		{
+			Assert.True(true);
+		}
 	}
 }
