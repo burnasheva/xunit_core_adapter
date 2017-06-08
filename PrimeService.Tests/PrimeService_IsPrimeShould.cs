@@ -31,6 +31,17 @@ namespace Prime.UnitTests.Services
 			Assert.False(result, $"{value} should not be prime");
 		}
 
+		[Theory]
+                [InlineData(-1)]
+                [InlineData(0)]
+                [InlineData(2)]
+                public void ShouldFailGivenValuesLessThan2(int value)
+                {
+                        var result = _primeService.IsPrime(value);
+
+                        Assert.False(result, $"{value} should not be prime");
+                }
+
 		[Fact(Skip = "Takes too long")]
 		public void TestSomething()
 		{
