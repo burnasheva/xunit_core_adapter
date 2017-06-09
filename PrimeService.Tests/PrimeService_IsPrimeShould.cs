@@ -35,7 +35,7 @@ namespace Prime.UnitTests.Services
                 [InlineData(-1)]
                 [InlineData(0)]
                 [InlineData(2)]
-                public void ShouldFailGivenValuesLessThan2(int value)
+                public void ShouldFailTest(int value)
                 {
                         var result = _primeService.IsPrime(value);
 
