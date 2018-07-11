@@ -1,3 +1,4 @@
+using System;
 using Xunit;
 using Prime.Services;
 
@@ -15,6 +16,9 @@ namespace Prime.UnitTests.Services
 		[Fact]
 		public void ReturnFalseGivenValueOf1()
 		{
+			Console.WriteLine("some stdOut text");
+			Console.Error.WriteLine("some stdErr text");
+			
 			var result = _primeService.IsPrime(1);
 
 			Assert.False(result, $"1 should not be prime");
@@ -26,25 +30,34 @@ namespace Prime.UnitTests.Services
 		[InlineData(1)]
 		public void ReturnFalseGivenValuesLessThan2(int value)
 		{
+			Console.WriteLine("some stdOut text");
+			Console.Error.WriteLine("some stdErr text");
+			
 			var result = _primeService.IsPrime(value);
 
 			Assert.False(result, $"{value} should not be prime");
 		}
 
 		[Theory]
-                [InlineData(-1)]
-                [InlineData(0)]
-                [InlineData(2)]
-                public void ShouldFailTest(int value)
-                {
-                        var result = _primeService.IsPrime(value);
+		[InlineData(-1)]
+		[InlineData(0)]
+		[InlineData(2)]
+		public void ShouldFailTest(int value)
+		{
+			Console.WriteLine("some stdOut text");
+			Console.Error.WriteLine("some stdErr text");
+		
+			var result = _primeService.IsPrime(value);
 
-                        Assert.False(result, $"{value} should not be prime");
-                }
+			Assert.False(result, $"{value} should not be prime");
+		}
 
 		[Fact(Skip = "Takes too long")]
 		public void TestSomething()
 		{
+			Console.WriteLine("some stdOut text");
+			Console.Error.WriteLine("some stdErr text");
+			
 			Assert.True(true);
 		}
 	}
