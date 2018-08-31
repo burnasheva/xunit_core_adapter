@@ -23,7 +23,6 @@ namespace Prime.UnitTests.Services
 
 			Assert.False(result, $"1 should not be prime");
 		}
-
 		[Theory]
 		[InlineData(-1)]
 		[InlineData(0)]
