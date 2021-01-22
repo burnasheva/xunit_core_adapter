@@ -1,15 +1,19 @@
 using System;
+using System.Threading;
 using Xunit;
 using Prime.Services;
+using Xunit.Abstractions;
 
 namespace Prime.UnitTests.Services
 {
 	public class PrimeService_IsPrimeShould
 	{
+		private readonly ITestOutputHelper _testOutputHelper;
 		private readonly PrimeService _primeService;
 
-		public PrimeService_IsPrimeShould()
+		public PrimeService_IsPrimeShould(ITestOutputHelper testOutputHelper)
 		{
+			_testOutputHelper = testOutputHelper;
 			_primeService = new PrimeService();
 		}
 
@@ -49,6 +53,23 @@ namespace Prime.UnitTests.Services
 			var result = _primeService.IsPrime(value);
 
 			Assert.False(result, $"{value} should not be prime");
+		}
+		
+		[Theory]
+		[Trait("Category", "RequiresDeployemnt")]
+		[InlineData("987287498290909<script>alert(1)</script>", "987287498290909<script>")]
+		[InlineData("<img src=987287498290909 onerror=alert(987287498290909) />", "<img src=987287498290909")]
+		public void CheckXSSTest(string value1, string value2)
+		{
+			_testOutputHelper.WriteLine("some stdOut text");
+			Console.Error.WriteLine("some stdErr text");
+			Thread.Sleep(30000);
+		
+			_testOutputHelper.WriteLine("Value1 = " + value1);
+			_testOutputHelper.WriteLine("Value2 = " + value2);
+			
+
+			Assert.False(true, "should not be prime");
 		}
 
 		[Fact(Skip = "Takes too long")]
